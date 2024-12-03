@@ -2,44 +2,47 @@ const axios = require('axios');
 const express = require('express');
 
 module.exports = function (app) {
-  // Fungsi untuk download video TikTok
   async function tiktokDl(url) {
     try {
-      const response = await axios.post(
-        "https://www.tikwm.com/api?url=https://vt.tiktok.com/ZSjtKxrEF",
-        {},
-        {
-          params: {
-            url: url,
-            count: 12,
-            cursor: 0,
-            web: 1,
-            hd: 1,
-          },
-        }
-      );
+      // Membuat URL API Tikwm dengan parameter dinamis
+      const apiUrl = `https://www.tikwm.com/api?url=${encodeURIComponent(url)}`;
 
-      // Mengembalikan data dari API
-      return response.data;
+      const response = await axios.get(apiUrl);
+
+      if (response.data && response.data.data) {
+        return response.data.data; // Hanya data video yang diambil
+      } else {
+        throw new Error("Invalid response from Tikwm API.");
+      }
     } catch (error) {
       console.error("Error fetching TikTok data:", error.message);
       throw new Error("Failed to fetch TikTok video data.");
     }
   }
 
-  // Rute untuk TikTok downloader
+  // Endpoint untuk download video TikTok
   app.get('/tiktok', async (req, res) => {
-    const url = req.query.url || 'https://vt.tiktok.com/ZSjtKxrEF/'; // Gunakan URL default jika tidak ada input
+    const { url } = req.query;
+
+    if (!url) {
+      return res.status(400).json({
+        success: false,
+        message: "URL TikTok is required.",
+      });
+    }
 
     try {
-      // Memanggil fungsi tiktokDl untuk mendapatkan data
-      const results = await tiktokDl(url);
+      const data = await tiktokDl(url);
 
-      // Mengembalikan hasil ke klien
-      return res.status(200).json(results);
+      res.status(200).json({
+        success: true,
+        data,
+      });
     } catch (error) {
-      // Penanganan kesalahan
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({
+        success: false,
+        message: error.message,
+      });
     }
   });
 };
