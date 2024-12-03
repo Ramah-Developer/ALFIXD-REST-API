@@ -1,53 +1,50 @@
 const axios = require('axios');
+const express = require('express');
 
-module.exports = function(app) {
-  async function tiktok2(message) {
+module.exports = function (app) {
+  // Fungsi untuk download video TikTok
+  async function tiktokDl(url) {
     try {
-      const encodedParams = new URLSearchParams();
-      encodedParams.set('url', message);
-      encodedParams.set('hd', '1');
+      const response = await axios.post(
+        "https://www.tikwm.com/api",
+        {},
+        {
+          params: {
+            url: url,
+            count: 12,
+            cursor: 0,
+            web: 1,
+            hd: 1,
+          },
+        }
+      );
 
-      const response = await axios({
-        method: 'POST',
-        url: 'https://tikwm.com/api/',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'Cookie': 'current_language=en',
-          'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
-        },
-        data: encodedParams
-      });
-
-      const videos = response.data.data;
-      return {
-        no_watermark: videos.play,
-        watermark: videos.wmplay,
-        music: videos.music
-      };
-
+      // Mengembalikan data dari API
+      return response.data;
     } catch (error) {
-      console.error(error);
-      throw new Error(`Failed to fetch video: ${error.message}`);
+      console.error("Error fetching TikTok data:", error.message);
+      throw new Error("Failed to fetch TikTok video data.");
     }
   }
 
+  // Rute untuk TikTok downloader
   app.get('/tiktok', async (req, res) => {
+    const { url } = req.query; // Mendapatkan URL dari query parameter
+
+    // Validasi input
+    if (!url) {
+      return res.status(400).json({ error: "URL is required." });
+    }
+
     try {
-      const url = req.query.url;
-      if (!url || typeof url !== 'string' || !url.startsWith('https://vm.tiktok.com/')) {
-        return res.status(400).json({ error: 'Parameter "url" tidak valid' });
-      }
+      // Memanggil fungsi tiktokDl untuk mendapatkan data
+      const results = await tiktokDl(url);
 
-      const response = await tiktok2(url);
-      res.status(200).json({
-        status: 200,
-        creator: "ALFIXD",
-        data: response
-      });
-
+      // Mengembalikan hasil ke klien
+      return res.status(200).json(results);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Terjadi kesalahan pada server' });
+      // Penanganan kesalahan
+      return res.status(500).json({ error: error.message });
     }
   });
-}
+};
