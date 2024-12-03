@@ -29,12 +29,7 @@ module.exports = function (app) {
 
   // Rute untuk TikTok downloader
   app.get('/tiktok', async (req, res) => {
-    const { url } = req.query; // Mendapatkan URL dari query parameter
-
-    // Validasi input
-    if (!url) {
-      return res.status(400).json({ error: "URL is required." });
-    }
+    const url = req.query.url || 'https://vt.tiktok.com/ZSjtKxrEF/'; // Gunakan URL default jika tidak ada input
 
     try {
       // Memanggil fungsi tiktokDl untuk mendapatkan data
