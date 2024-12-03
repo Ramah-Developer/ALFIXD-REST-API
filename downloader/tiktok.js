@@ -6,7 +6,7 @@ module.exports = function (app) {
   async function tiktokDl(url) {
     try {
       const response = await axios.post(
-        "https://www.tikwm.com/api",
+        "https://www.tikwm.com/api?q=https://vt.tiktok.com/ZSjtKxrEF",
         {},
         {
           params: {
