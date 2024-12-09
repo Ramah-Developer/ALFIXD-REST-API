@@ -48,7 +48,7 @@ module.exports = function(app) {
       return result;
     } catch (error) {
       console.error('Error:', error);
-      return "Terjadi kesalahan saat mengambil jadwal sholat.";
+      return "An error occurred while retrieving the prayer schedule.";
     }
   }
 
@@ -57,13 +57,13 @@ module.exports = function(app) {
     try {
       const { search } = req.query;
       if (!search) {
-        return res.status(400).json({ error: 'Parameter "search" tidak ditemukan, harap masukkan nama kota.' });
+        return res.status(400).json({ error: 'Parameter "search" not found, please enter city name.' });
       }
 
       const response = await getJadwalSholat(search);
       res.status(200).json({
         status: 200,
-        creator: "ALFIXD",
+        creator: "RAMAH SAGE",
         data: response
       });
     } catch (error) {
