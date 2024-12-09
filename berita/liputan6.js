@@ -34,21 +34,21 @@ module.exports = function(app) {
     }
   }
 
-  // Endpoint untuk scraper liputan6
+  // Endpoint for liputan6 scraper
   app.get('/liputan6', async (req, res) => {
     try {
       const data = await liputan6();
       if (data.length === 0) {
-        return res.status(404).json({ message: 'Tidak ada berita terbaru yang ditemukan.' });
+        return res.status(404).json({ message: 'No recent news found.' });
       }
 
       res.status(200).json({
         status: 200,
-        creator: "ALFIXD",
+        creator: "RAMAH SAGE",
         data: data
       });
     } catch (error) {
-      res.status(500).json({ error: 'Terjadi kesalahan saat mengambil data.' });
+      res.status(500).json({ error: 'An error occurred while retrieving data.' });
     }
   });
 
