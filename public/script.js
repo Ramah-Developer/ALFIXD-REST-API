@@ -41,7 +41,7 @@ navigator.clipboard.writeText(textToCopy).then(function() {
         popup.classList.remove('show');
     }, 2000);
 }, function(err) {
-    console.error('Gagal menyalin teks:', err);
+    console.error('Failed to copy text:', err);
 });
 }
 
