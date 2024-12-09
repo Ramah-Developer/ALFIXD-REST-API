@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="style.css">
-  <title>ALFIXD REST API</title>
+  <title>RAMAH REST API</title>
 
   <!-- Full Kode Di Github Saya : https://github.com/Lenwyy/ -->
 
@@ -15,8 +15,8 @@
   <!-- Popup -->
   <div id="popup-backdrop" class="popup-backdrop"></div>
   <div id="popup" class="popup">
-    <h2>Selamat Datang Di ALFIXD API!</h2>
-    <p>ALFIXD API Merupakan Sebuah Website REST API Gratis Yang Tidak Memungut Biaya Sama Sekali, Saya Akan Senang Bila Anda Berniat Untuk Berpartisipasi Dalam Kemajuan Website Ini, Terimakasih :D </p>
+    <h2>Selamat Datang Di RAMAH API!</h2>
+    <p>RAMAH API Merupakan Sebuah Website REST API Gratis Yang Tidak Memungut Biaya Sama Sekali, Saya Akan Senang Bila Anda Berniat Untuk Berpartisipasi Dalam Kemajuan Website Ini, Terimakasih :D </p>
     <div class="popup-buttons">
       <button id="close-popup" class="popup-button">Tutup</button>
       <a href="https://saweria.co/alfiisyl" target="_blank" class="popup-button donate">Donasi</a>
@@ -29,7 +29,7 @@
 <body>
 <div class="container">
   <h1>ALFIXD API</h1>
-  <p>Hi, ALFIXD API Merupakan Sebuah Website Yang Menyediakan REST API Gratis</p>
+  <p>Hi, RAMAH API Merupakan Sebuah Website Yang Menyediakan REST API Gratis</p>
   
   <span class="section__subtitle">01</span>
   <h2 class="centered-title">Informasi</h2>
@@ -158,7 +158,7 @@
 
           <div class="btn">
             <div class="btn-link">/ypia</div>
-            <span class="desc-endpoint">Cari Informasi Tafsir Dari Ypia</span>
+            <span class="desc-endpoint">Find Interpretation Information From this: </span>
             <a href="/ypia?search=" class="btn-link">Try</a>
           </div>
 
@@ -169,7 +169,7 @@
 
  <span class="section__subtitle">03</span>    
  <h2>Penggunaan</h2>
-  <p>Untuk Menggunakan End Point, Kirim Sebuah Permintaan GET kepada End Point yang Diinginkan Dengan Diikuti Parameter Berikut :</p>
+  <p>To Use an End Point, Send a GET Request to the Desired End Point with the Following Par :</p>
   <ul>
     <pre>
 
@@ -179,29 +179,29 @@ message: Isi Permintaan Kamu
 
   <span class="section__subtitle">04</span>
   <h2>Respon</h2>
-  <p>Respon Yang Diberikan Berupa Format JSON Dengan Struktur :</p>
+  <p>The response given is in JSON format with  :</p>
   <pre>
 {
   "status": 200,
-  "creator": "ALFIXD",
+  "creator": "RAMAH BOTS",
   "data": {
-    "response": "Hasil Respon Permintaan Kamu"
+    "response": "Your Request Response Results"
   }
 }
   </pre>
 
 <span class="section__subtitle">05</span>
 <h2>Implemetasi</h2>
-<p>Berikut Merupakan Contoh implementasi Dalam Bentuk Case :</p>
+<p>The following is an example of implementation in case form. :</p>
 
 <pre id="codeBlock">
 case 'ai4': {
-if (!q) return m.reply(`☘️ *Mau Nanya Apa Sama Ai4Chat?*`)
-if (text.length > 500) return m.reply(`☘️ *Maksimal 500 Karakter*`)
-m.reply('☘️ *Sabar Yaa*')
-var lenwyai = await fetchJson(`https://api-lenwy.vercel.app/ai4chat?text=${q}`)
-var lenai = lenwyai.data
-await m.reply(lenai)
+if (!q) return m.reply(`☘️ *Want to ask me something?*`)
+if (text.length > 500) return m.reply(`☘️ *Maximum 500 Characters*`)
+m.reply('☘️ *Be patient, okay?*')
+var ramahai = await fetchJson(`https://ramah-rest-evs4rjrep-ramadhan-s-projects.vercel.app/ai4chat?text=${q}`)
+var ramah = ramahai.data
+await m.reply(ramah)
 }
 break
 </pre>
@@ -210,17 +210,17 @@ break
 
 <!-- Tombol Copy -->
 <button class="copy-btn"  id="copyButton">Copy</button>
-<div id="copyPopup" class="popup2">Berhasil Disalin</div>
+<div id="copyPopup" class="popup2">Successfully Cop</div>
 
 <a href="https://saweria.co/alfiisyl" class="circle-button">
-  <img src="https://widipe.com/file/1Kzkads4ziLz.png" alt="Icon" class="icon">
+  <img src="https://pomf2.lain.la/f/zbr7430i.jpg" alt="Icon" class="icon">
 </a>
 
 <!-- https://widipe.com/file/1Kzkads4ziLz.png -->
 
 <span class="section__subtitle">06</span>
 <h2>Informasi Tambahan</h2>
-<p>Website REST API Ini Masih Dalam Tahap Perkembangan (BETA), Mohon Untuk Memaklumi Segala Kekurangannya, Terimakasih :D</p>
+<p>This REST API Website is Still Under Development (BETA), Please Understand Any Shortcomings, Thankp>
   </div>
 </div>
 </div>
