@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
-// Full Kode Di Github Saya : https://github.com/Lenwyy/
+// Full Code On My Github : https://github.com/Lenwyy/
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -31,14 +31,14 @@ require('./search/jadwalsholat')(app);
 
 // Full Kode Di Github Saya : https://github.com/Lenwyy/
 
-// Endpoint untuk halaman HTML utama
+// Endpoint for the main HTML page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Handle 404 error
+// Handle 404 errors
 app.use((req, res, next) => {
-  res.status(404).send("Sorry can't find that!");
+  res.status(404).send("Damn can't find that!");
 });
 
 // Handle error
@@ -47,7 +47,7 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-// Jalankan server
+// Run server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
