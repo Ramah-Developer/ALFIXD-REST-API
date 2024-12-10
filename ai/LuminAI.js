@@ -19,12 +19,12 @@ app.get('/luminai', async (req, res) => {
     try {
       const { text } = req.query;
       if (!text) {
-        return res.status(400).json({ error: 'Parameter "text" Tidak Ditemukan, Tolong Masukkan Perintah' });
+        return res.status(400).json({ error: 'Parameter "text" Not Found, Please Enter Command' });
       }
       const response = await fetchContent(text);
       res.status(200).json({
         status: 200,
-        creator: "ALFIXD",
+        creator: "RAMAH",
         data: response
       });
     } catch (error) {
