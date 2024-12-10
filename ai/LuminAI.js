@@ -6,7 +6,7 @@ module.exports = function(app) {
 
 async function fetchContent(content) {
   try {
-    const response = await axios.post('https://luminai.my.id/', { content });
+    const response = await axios.post('https://openai.com/', { content });
     return response.data;
   } catch (error) {
     console.error("Error fetching content from LuminAI:", error);
